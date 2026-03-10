@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AskARM — Robotic Arm Q&A</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080c10;
+      --panel: #0d1520;
+      --border: #1a3a5c;
+      --accent: #00d4ff;
+      --accent2: #ff6b35;
+      --text: #c8dce8;
+      --dim: #4a6a80;
+      --glow: 0 0 20px rgba(0,212,255,0.3);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .logo {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 900;
+      color: var(--accent);
+      text-shadow: var(--glow);
+      letter-spacing: 4px;
+      line-height: 1;
+    }
+
+    .logo span { color: var(--accent2); }
+
+    .tagline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--dim);
+      margin-top: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .arm-deco {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      color: var(--dim);
+      border-radius: 3px;
+      background: var(--panel);
+    }
+
+    .chip.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 8px rgba(0,212,255,0.2);
+    }
+
+    .connector {
+      width: 20px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 24px;
+      position: relative;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .card-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    textarea {
+      width: 100%;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.05rem;
+      padding: 16px;
+      resize: none;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      line-height: 1.6;
+    }
+
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(0,212,255,0.15);
+    }
+
+    textarea::placeholder {
+      color: var(--dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      margin-top: 16px;
+      background: transparent;
+      border: 2px solid var(--accent);
+      border-radius: 6px;
+      color: var(--accent);
+      font-family: 'Orbitron', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+      z-index: -1;
+    }
+
+    .btn:hover:not(:disabled)::before { transform: scaleX(1); }
+    .btn:hover:not(:disabled) { color: var(--bg); box-shadow: var(--glow); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .loading-bar {
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 16px;
+      display: none;
+    }
+
+    .loading-bar.active { display: block; }
+
+    .loading-bar::after {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 40%;
+      background: var(--accent);
+      animation: loading 1.2s ease-in-out infinite;
+      box-shadow: var(--glow);
+    }
+
+    .answer-card { display: none; animation: fadeUp 0.5s ease both; }
+    .answer-card.visible { display: block; }
+
+    .answer-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    .examples {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .ex-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--dim);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .ex-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,212,255,0.05);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--dim);
+      letter-spacing: 2px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: #00ff88;
+    }
+
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00ff88;
+      box-shadow: 0 0 8px #00ff88;
+      animation: pulse 2s infinite;
+    }
+
+    .scanline {
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px
+      );
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:translateY(0); } }
+    @keyframes loading  { 0%{transform:translateX(-100%)} 50%{transform:translateX(150%)} 100%{transform:translateX(150%)} }
+    @keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  </style>
+</head>
+<body>
+  <div class="scanline"></div>
+  <div class="container">
+
+    <header>
+      <div class="logo">ASK<span>ARM</span></div>
+      <div class="tagline">Robotic Arm Intelligence System · Arduino R4 WiFi</div>
+
+      <div class="arm-deco" style="margin-top:20px;">
+        <div class="chip active">Arduino R4</div>
+        <div class="connector"></div>
+        <div class="chip active">PCA9685</div>
+        <div class="connector"></div>
+        <div class="chip active">4x Servo</div>
+        <div class="connector"></div>
+        <div class="chip active">2x Joystick</div>
+        <div class="connector"></div>
+        <div class="chip">MB102</div>
+      </div>
+
+      <div style="margin-top:12px;">
+        <span class="status"><span class="status-dot"></span> AI ONLINE</span>
+      </div>
+    </header>
+
+    <div class="card">
+      <div class="card-label">// INPUT QUERY</div>
+      <textarea id="question" rows="4" placeholder="tanyakan sesuatu tentang robotic arm ini..."></textarea>
+
+      <div class="examples">
+        <button class="ex-btn" onclick="fillExample(this)">Cara wiring PCA9685?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Kenapa servo bergetar?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Kode joystick ke servo</button>
+        <button class="ex-btn" onclick="fillExample(this)">Setting MB102 power supply</button>
+        <button class="ex-btn" onclick="fillExample(this)">Cara kalibrasi 4 DOF?</button>
+      </div>
+
+      <button class="btn" id="askBtn" onclick="askQuestion()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+        </svg>
+        SEND QUERY
+      </button>
+
+      <div class="loading-bar" id="loadingBar"></div>
+    </div>
+
+    <div class="card answer-card" id="answerCard">
+      <div class="card-label">// AI RESPONSE</div>
+      <div class="answer-text" id="answerText"></div>
+    </div>
+
+    <footer>ASKARM v1.0 · POWERED BY CLAUDE AI · 4-DOF ROBOTIC ARM SPECIALIST</footer>
+  </div>
+
+  <script>
+    // ============================================================
+    //  GANTI URL INI dengan URL Cloudflare Worker kamu setelah deploy
+    // ============================================================
+    const WORKER_URL = "https://askarm-api.derylandries.workers.dev";
+
+    function fillExample(btn) {
+      document.getElementById('question').value = btn.textContent;
+      document.getElementById('question').focus();
+    }
+
+    async function askQuestion() {
+      const q = document.getElementById('question').value.trim();
+      if (!q) return;
+
+      const btn = document.getElementById('askBtn');
+      const loadingBar = document.getElementById('loadingBar');
+      const answerCard = document.getElementById('answerCard');
+      const answerText = document.getElementById('answerText');
+
+      btn.disabled = true;
+      loadingBar.classList.add('active');
+      answerCard.classList.remove('visible');
+
+      try {
+        const res = await fetch(WORKER_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: q }),
+        });
+
+        const data = await res.json();
+        answerText.textContent = data.answer || data.error || "Tidak ada respons.";
+        answerCard.classList.add('visible');
+        answerCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      } catch (err) {
+        answerText.textContent = "⚠ Gagal menghubungi server. Pastikan Worker URL sudah diisi dengan benar.";
+        answerCard.classList.add('visible');
+      } finally {
+        btn.disabled = false;
+        loadingBar.classList.remove('active');
+      }
+    }
+
+    document.getElementById('question').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.ctrlKey) askQuestion();
+    });
+  </script>
+</body>
+</html>
