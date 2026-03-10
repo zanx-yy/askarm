@@ -310,7 +310,7 @@
 
     <header>
       <div class="logo">ASK<span>ARM</span></div>
-      <div class="tagline">Robotic Arm Intelligence System · Arduino R4 WiFi</div>
+      <div class="tagline">Robotic Arm &amp; Informatika · Arduino R4 WiFi · 18 Anggota</div>
 
       <div class="arm-deco" style="margin-top:20px;">
         <div class="chip active">Arduino R4</div>
@@ -321,24 +321,33 @@
         <div class="connector"></div>
         <div class="chip active">2x Joystick</div>
         <div class="connector"></div>
-        <div class="chip">MB102</div>
+        <div class="chip active">MB102</div>
+        <div class="connector"></div>
+        <div class="chip active">Informatika</div>
       </div>
 
       <div style="margin-top:12px;">
         <span class="status"><span class="status-dot"></span> AI ONLINE</span>
       </div>
+
+      <div style="margin-top:16px; font-family:'Share Tech Mono',monospace; font-size:0.75rem; color: var(--dim);">
+        PROMPT BY <span style="color:var(--accent); letter-spacing:2px;">ZANXYY</span>
+        <span style="color:var(--border)"> · </span>
+        <span style="color:var(--dim)">Alexander Sebastian Deryl Andries</span>
+      </div>
     </header>
 
     <div class="card">
       <div class="card-label">// INPUT QUERY</div>
-      <textarea id="question" rows="4" placeholder="tanyakan sesuatu tentang robotic arm ini..."></textarea>
+      <textarea id="question" rows="4" placeholder="tanyakan sesuatu tentang robotic arm atau informatika..."></textarea>
 
       <div class="examples">
         <button class="ex-btn" onclick="fillExample(this)">Cara wiring PCA9685?</button>
         <button class="ex-btn" onclick="fillExample(this)">Kenapa servo bergetar?</button>
         <button class="ex-btn" onclick="fillExample(this)">Kode joystick ke servo</button>
-        <button class="ex-btn" onclick="fillExample(this)">Setting MB102 power supply</button>
-        <button class="ex-btn" onclick="fillExample(this)">Cara kalibrasi 4 DOF?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Apa itu algoritma?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Siapa anggota kelompok?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Jelaskan struktur data array</button>
       </div>
 
       <button class="btn" id="askBtn" onclick="askQuestion()">
@@ -356,14 +365,14 @@
       <div class="answer-text" id="answerText"></div>
     </div>
 
-    <footer>ASKARM v1.0 · POWERED BY CLAUDE AI · 4-DOF ROBOTIC ARM SPECIALIST</footer>
+    <footer>ASKARM v1.0 · POWERED BY CLAUDE AI · ROBOTIC ARM &amp; INFORMATIKA<br style="margin-bottom:4px">Prompt by Zanxyy (Alexander Sebastian Deryl Andries)</footer>
   </div>
 
   <script>
     // ============================================================
     //  GANTI URL INI dengan URL Cloudflare Worker kamu setelah deploy
     // ============================================================
-    const WORKER_URL = "https://askarm-api.derylandries.workers.dev";
+    const WORKER_URL = "https://NAMA-WORKER-KAMU.workers.dev";
 
     function fillExample(btn) {
       document.getElementById('question').value = btn.textContent;
