@@ -298,6 +298,30 @@
       z-index: 999;
     }
 
+    .team-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+    }
+
+    .team-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .team-member {
+      font-size: 0.92rem;
+      color: var(--text);
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(26,58,92,0.4);
+    }
+
+    .team-member:last-child { border-bottom: none; }
+
     @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:translateY(0); } }
     @keyframes loading  { 0%{transform:translateX(-100%)} 50%{transform:translateX(150%)} 100%{transform:translateX(150%)} }
@@ -357,6 +381,66 @@
     <div class="card answer-card" id="answerCard">
       <div class="card-label">// AI RESPONSE</div>
       <div class="answer-text" id="answerText"></div>
+    </div>
+
+    <div class="card" style="animation-delay:0.2s;">
+      <div class="card-label">// TIM KELOMPOK PROJECT</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px;">
+
+        <div class="team-box">
+          <div class="team-title">🎨 Desain Presentasi & Media</div>
+          <div class="team-member">Andre Cadenza</div>
+          <div class="team-member">Marchello Evander</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">🔧 Hardware & Perakitan</div>
+          <div class="team-member">Hein Jeremi</div>
+          <div class="team-member">M. Askar Andika</div>
+          <div class="team-member">Ferdinan Tamaroba</div>
+          <div class="team-member">Dani Ahaddin</div>
+          <div class="team-member">Hanok Yan</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">💻 Programming Arduino & Web</div>
+          <div class="team-member">Alexander S. D. Andries</div>
+          <div class="team-member">Claude AI</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">📸 Dokumentasi Video & Foto</div>
+          <div class="team-member">Randy Daniel</div>
+          <div class="team-member">M. Farid Alfarizi</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">📝 Laporan Penulisan</div>
+          <div class="team-member">Rifaldo Yoga</div>
+          <div class="team-member">Mizle Jhordan</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">📖 Buku Panduan Proyek</div>
+          <div class="team-member">Milyardo Putra</div>
+          <div class="team-member">Marchello Evander</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">📄 Makalah & Pencetakan</div>
+          <div class="team-member">Andre Cadenza</div>
+          <div class="team-member">Milyardo Putra</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">🎬 Editor Video</div>
+          <div class="team-member">Riski Pamungkas</div>
+        </div>
+
+      </div>
+      <div style="margin-top:16px; font-family:'Share Tech Mono',monospace; font-size:0.72rem; color:var(--dim); border-top:1px solid var(--border); padding-top:12px;">
+        * Anggota yang tidak tercantum di atas turut berkontribusi dalam pekerjaan lainnya
+      </div>
     </div>
 
     <footer>ASKARM v1.0 · POWERED BY CLAUDE AI &amp; GROQ API · ROBOTIC ARM &amp; INFORMATIKA<br style="margin-bottom:4px">Prompt by Zanxyy (Alexander Sebastian Deryl Andries)</footer>
