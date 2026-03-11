@@ -422,6 +422,10 @@
       <div class="logo">ASK<span>ARM</span></div>
       <div class="tagline">Robotic Arm &amp; Informatika</div>
 
+      <div style="margin-top:10px; font-family:'Share Tech Mono',monospace; font-size:0.8rem; color:var(--accent); letter-spacing:3px;">
+        XII B1 SMANSA
+      </div>
+
       <div style="margin-top:12px;">
         <span class="status"><span class="status-dot"></span> AI ONLINE</span>
       </div>
@@ -451,8 +455,17 @@
     </div>
 
     <div class="card answer-card" id="answerCard">
-      <div class="card-label">// AI RESPONSE</div>
+      <div class="card-label">// AI RESPONSE
+        <button id="copyBtn" onclick="copyAnswer()" style="margin-left:auto; font-family:'Share Tech Mono',monospace; font-size:0.65rem; padding:4px 10px; background:transparent; border:1px solid var(--dim); border-radius:3px; color:var(--dim); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--dim)';this.style.color='var(--dim)'">📋 COPY</button>
+      </div>
       <div class="answer-text" id="answerText"></div>
+    </div>
+
+    <!-- History -->
+    <div class="card" id="historyCard" style="display:none;">
+      <div class="card-label">// RIWAYAT PERTANYAAN</div>
+      <div id="historyList" style="display:flex; flex-direction:column; gap:8px;"></div>
+      <button onclick="clearHistory()" style="margin-top:12px; font-family:'Share Tech Mono',monospace; font-size:0.65rem; padding:6px 14px; background:transparent; border:1px solid #ff6b35; border-radius:3px; color:#ff6b35; cursor:pointer;">🗑 HAPUS RIWAYAT</button>
     </div>
 
     <div class="card answer-card" id="shopCard">
@@ -464,6 +477,9 @@
           <div class="shop-info">
             <div class="shop-name">Arduino UNO R4 WiFi</div>
             <div class="shop-desc">Mikrokontroler utama · bisa pakai alternatif lebih murah</div>
+            <div style="margin-top:6px; font-family:'Share Tech Mono',monospace; font-size:0.68rem; color:#ff6b35;">
+              ⚠ R4 WiFi dipakai karena ini Arduino pribadi milik Deryl. Tidak harus R4 WiFi!
+            </div>
             <div style="display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;">
               <a class="shop-btn" href="https://shopee.co.id/Arduino-Uno-R4-Wifi-Minima-ESP32-S3-RA4M1-32-bit-Arm-Microcontroller-i.138926279.24363837794" target="_blank">🛒 R4 WiFi</a>
               <a class="shop-btn alt" href="https://shopee.co.id/Arduino-UNO-R3-ATMEGA328P-ATMEGA-16U2-Compatible-Board-Kabel-USB-i.62956347.16958642873" target="_blank">💡 Alternatif R3</a>
@@ -589,47 +605,47 @@
 
         <div class="team-box">
           <div class="team-title">🎨 Desain Presentasi & Media</div>
-          <div class="team-member">Andre Cadenza</div>
-          <div class="team-member">Marchello Evander</div>
+          <div class="team-member">Andre Cadenza Putra Pathoni</div>
+          <div class="team-member">Marchello Evander Violian</div>
         </div>
 
         <div class="team-box">
           <div class="team-title">🔧 Hardware & Perakitan</div>
-          <div class="team-member">Hein Jeremi</div>
-          <div class="team-member">M. Askar Andika</div>
+          <div class="team-member">Hein Jeremi Kaiway</div>
+          <div class="team-member">Muhammad Askar Andika Trijaya Rais</div>
           <div class="team-member">Ferdinan Tamaroba</div>
-          <div class="team-member">Dani Ahaddin</div>
-          <div class="team-member">Hanok Yan</div>
+          <div class="team-member">Dani Ahaddin Firmansyah</div>
+          <div class="team-member">Hanok Yan Aritahanu</div>
         </div>
 
         <div class="team-box">
           <div class="team-title">💻 Programming Arduino & Web</div>
-          <div class="team-member">Alexander S. D. Andries</div>
+          <div class="team-member">Alexander Sebastian Deryl Andries</div>
           <div class="team-member">Claude AI</div>
         </div>
 
         <div class="team-box">
           <div class="team-title">📸 Dokumentasi Video & Foto</div>
-          <div class="team-member">Randy Daniel</div>
-          <div class="team-member">M. Farid Alfarizi</div>
+          <div class="team-member">Randy Daniel Tomasouw Wanggai</div>
+          <div class="team-member">Muhammad Farid Alfarizi</div>
         </div>
 
         <div class="team-box">
           <div class="team-title">📝 Laporan Penulisan</div>
-          <div class="team-member">Rifaldo Yoga</div>
-          <div class="team-member">Mizle Jhordan</div>
+          <div class="team-member">Rifaldo Yoga Maripi</div>
+          <div class="team-member">Mizle Jhordan Pappang Allo</div>
         </div>
 
         <div class="team-box">
           <div class="team-title">📖 Buku Panduan Proyek</div>
-          <div class="team-member">Milyardo Putra</div>
-          <div class="team-member">Marchello Evander</div>
+          <div class="team-member">Milyardo Paschalis Permata Puthera</div>
+          <div class="team-member">Marchello Evander Violian</div>
         </div>
 
         <div class="team-box">
           <div class="team-title">📄 Makalah & Pencetakan</div>
-          <div class="team-member">Andre Cadenza</div>
-          <div class="team-member">Milyardo Putra</div>
+          <div class="team-member">Andre Cadenza Putra Pathoni</div>
+          <div class="team-member">Milyardo Paschalis Permata Puthera</div>
         </div>
 
         <div class="team-box">
@@ -657,6 +673,45 @@
       'pca9685','mb102','breadboard','jumper','baterai','rangka','berapa','biaya',
       'budget','murah','mahal','tokopedia','marketplace','material'
     ];
+
+    const history = [];
+
+    function copyAnswer() {
+      const text = document.getElementById('answerText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = '✅ COPIED!';
+        setTimeout(() => btn.textContent = '📋 COPY', 2000);
+      });
+    }
+
+    function addHistory(question, answer) {
+      history.unshift({ question, answer });
+      const card = document.getElementById('historyCard');
+      const list = document.getElementById('historyList');
+      card.style.display = 'block';
+      list.innerHTML = history.map((h, i) => `
+        <div style="padding:12px; background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:6px; cursor:pointer;" onclick="loadHistory(${i})">
+          <div style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; color:var(--accent);">Q: ${h.question.substring(0,60)}${h.question.length>60?'...':''}</div>
+        </div>
+      `).join('');
+    }
+
+    function loadHistory(i) {
+      const h = history[i];
+      const formatted = h.answer
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color:var(--accent);word-break:break-all;">$1</a>');
+      document.getElementById('answerText').innerHTML = formatted;
+      document.getElementById('answerCard').classList.add('visible');
+      document.getElementById('answerCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    function clearHistory() {
+      history.length = 0;
+      document.getElementById('historyCard').style.display = 'none';
+      document.getElementById('historyList').innerHTML = '';
+    }
 
     function checkShowShop(question) {
       const q = question.toLowerCase();
@@ -706,9 +761,15 @@
         });
 
         const data = await res.json();
-        answerText.textContent = data.answer || data.error || "Tidak ada respons.";
+        const raw = data.answer || data.error || "Tidak ada respons.";
+        // Render **bold** dan URL jadi clickable
+        const formatted = raw
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color:var(--accent);word-break:break-all;">$1</a>');
+        answerText.innerHTML = formatted;
         answerCard.classList.add('visible');
         answerCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        addHistory(q, raw);
 
       } catch (err) {
         answerText.textContent = "⚠ Gagal menghubungi server. Pastikan Worker URL sudah diisi dengan benar.";
