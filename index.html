@@ -298,6 +298,116 @@
       z-index: 999;
     }
 
+    .shop-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      gap: 12px;
+    }
+
+    .shop-info { flex: 1; }
+
+    .shop-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .shop-desc {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--dim);
+      margin-top: 2px;
+    }
+
+    .shop-btn {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.7rem;
+      padding: 8px 14px;
+      background: transparent;
+      border: 1px solid #ff6b35;
+      border-radius: 4px;
+      color: #ff6b35;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+      letter-spacing: 1px;
+    }
+
+    .shop-btn:hover {
+      background: #ff6b35;
+      color: var(--bg);
+    }
+
+    .shop-btn.alt {
+      border-color: #00ff88;
+      color: #00ff88;
+    }
+
+    .shop-btn.alt:hover {
+      background: #00ff88;
+      color: var(--bg);
+    }
+
+    .price-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 130px;
+      justify-content: flex-end;
+    }
+
+    .price-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--dim);
+    }
+
+    .price-input {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--accent);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      padding: 6px 8px;
+      width: 100px;
+      text-align: right;
+      outline: none;
+    }
+
+    .price-input:focus {
+      border-color: var(--accent);
+    }
+
+    .team-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+    }
+
+    .team-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .team-member {
+      font-size: 0.92rem;
+      color: var(--text);
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(26,58,92,0.4);
+    }
+
+    .team-member:last-child { border-bottom: none; }
+
     @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:translateY(0); } }
     @keyframes loading  { 0%{transform:translateX(-100%)} 50%{transform:translateX(150%)} 100%{transform:translateX(150%)} }
@@ -310,30 +420,10 @@
 
     <header>
       <div class="logo">ASK<span>ARM</span></div>
-      <div class="tagline">Robotic Arm &amp; Informatika · Arduino R4 WiFi · 18 Anggota</div>
-
-      <div class="arm-deco" style="margin-top:20px;">
-        <div class="chip active">Arduino R4</div>
-        <div class="connector"></div>
-        <div class="chip active">PCA9685</div>
-        <div class="connector"></div>
-        <div class="chip active">4x Servo</div>
-        <div class="connector"></div>
-        <div class="chip active">2x Joystick</div>
-        <div class="connector"></div>
-        <div class="chip active">MB102</div>
-        <div class="connector"></div>
-        <div class="chip active">Informatika</div>
-      </div>
+      <div class="tagline">Robotic Arm &amp; Informatika</div>
 
       <div style="margin-top:12px;">
         <span class="status"><span class="status-dot"></span> AI ONLINE</span>
-      </div>
-
-      <div style="margin-top:16px; font-family:'Share Tech Mono',monospace; font-size:0.75rem; color: var(--dim);">
-        PROMPT BY <span style="color:var(--accent); letter-spacing:2px;">ZANXYY</span>
-        <span style="color:var(--border)"> · </span>
-        <span style="color:var(--dim)">Alexander Sebastian Deryl Andries</span>
       </div>
     </header>
 
@@ -365,6 +455,194 @@
       <div class="answer-text" id="answerText"></div>
     </div>
 
+    <div class="card answer-card" id="shopCard">
+      <div class="card-label">// KOMPONEN & BELI DI SHOPEE</div>
+
+      <div style="display:flex; flex-direction:column; gap:10px;" id="shopList">
+
+        <div class="shop-row">
+          <div class="shop-info">
+            <div class="shop-name">Arduino UNO R4 WiFi</div>
+            <div class="shop-desc">Mikrokontroler utama · bisa pakai alternatif lebih murah</div>
+            <div style="display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;">
+              <a class="shop-btn" href="https://shopee.co.id/Arduino-Uno-R4-Wifi-Minima-ESP32-S3-RA4M1-32-bit-Arm-Microcontroller-i.138926279.24363837794" target="_blank">🛒 R4 WiFi</a>
+              <a class="shop-btn alt" href="https://shopee.co.id/Arduino-UNO-R3-ATMEGA328P-ATMEGA-16U2-Compatible-Board-Kabel-USB-i.62956347.16958642873" target="_blank">💡 Alternatif R3</a>
+            </div>
+          </div>
+          <div class="price-input-wrap">
+            <span class="price-label">Rp</span>
+            <input class="price-input" type="number" value="550000" oninput="calcTotal()" placeholder="0">
+          </div>
+        </div>
+
+        <div class="shop-row">
+          <div class="shop-info">
+            <div class="shop-name">Breadboard MB-102</div>
+            <div class="shop-desc">830 hole · untuk prototyping rangkaian</div>
+            <a class="shop-btn" href="https://shopee.co.id/MB-102-830-hole-White-Breadboard-Panjang-Putih-Arduino-Prototyping-i.138926279.25359420750" target="_blank" style="margin-top:6px; display:inline-block;">🛒 Beli</a>
+          </div>
+          <div class="price-input-wrap">
+            <span class="price-label">Rp</span>
+            <input class="price-input" type="number" value="20000" oninput="calcTotal()" placeholder="0">
+          </div>
+        </div>
+
+        <div class="shop-row">
+          <div class="shop-info">
+            <div class="shop-name">MB102 Power Supply Module</div>
+            <div class="shop-desc">3.3V / 5V · power supply untuk breadboard</div>
+            <a class="shop-btn" href="https://shopee.co.id/MB-102-Breadboard-Power-Supply-Regulator-Module-3.3V-5V-Arduino-Raspberry-i.138926279.25309435594" target="_blank" style="margin-top:6px; display:inline-block;">🛒 Beli</a>
+          </div>
+          <div class="price-input-wrap">
+            <span class="price-label">Rp</span>
+            <input class="price-input" type="number" value="25000" oninput="calcTotal()" placeholder="0">
+          </div>
+        </div>
+
+        <div class="shop-row">
+          <div class="shop-info">
+            <div class="shop-name">Kabel Jumper (Set)</div>
+            <div class="shop-desc">Paket lengkap 10cm untuk breadboard</div>
+            <a class="shop-btn" href="https://shopee.co.id/PAKET-LENGKAP-JUMPER-10CM-FOR-BREADBOARD-i.62956347.22510507333" target="_blank" style="margin-top:6px; display:inline-block;">🛒 Beli</a>
+          </div>
+          <div class="price-input-wrap">
+            <span class="price-label">Rp</span>
+            <input class="price-input" type="number" value="20000" oninput="calcTotal()" placeholder="0">
+          </div>
+        </div>
+
+        <div class="shop-row">
+          <div class="shop-info">
+            <div class="shop-name">Analog Joystick KY-023 × 2</div>
+            <div class="shop-desc">Dual axis XY · beli 2 buah</div>
+            <a class="shop-btn" href="https://shopee.co.id/KY-023-ANALOG-DUAL-AXIS-XY-JOYSTICK-MODULE-FOR-ARDUINO-i.62956347.7913264782" target="_blank" style="margin-top:6px; display:inline-block;">🛒 Beli</a>
+          </div>
+          <div class="price-input-wrap">
+            <span class="price-label">Rp</span>
+            <input class="price-input" type="number" value="50000" oninput="calcTotal()" placeholder="0">
+          </div>
+        </div>
+
+        <div class="shop-row">
+          <div class="shop-info">
+            <div class="shop-name">Servo SG90 × 4</div>
+            <div class="shop-desc">4 buah · 180° atau 360° sesuai kebutuhan</div>
+            <a class="shop-btn" href="https://shopee.co.id/DC-Servo-Motor-SG90-RC-Robotic-Arduino-Raspberry-pi-i.138926279.24309760238" target="_blank" style="margin-top:6px; display:inline-block;">🛒 Beli</a>
+          </div>
+          <div class="price-input-wrap">
+            <span class="price-label">Rp</span>
+            <input class="price-input" type="number" value="80000" oninput="calcTotal()" placeholder="0">
+          </div>
+        </div>
+
+        <div class="shop-row">
+          <div class="shop-info">
+            <div class="shop-name">Rangka Robotic Arm 4 DOF</div>
+            <div class="shop-desc">Triplek atau acrylic · cari di marketplace</div>
+            <a class="shop-btn" href="https://shopee.co.id/search?keyword=robotic+arm+4+dof" target="_blank" style="margin-top:6px; display:inline-block;">🔍 Cari di Shopee</a>
+          </div>
+          <div class="price-input-wrap">
+            <span class="price-label">Rp</span>
+            <input class="price-input" type="number" value="100000" oninput="calcTotal()" placeholder="0">
+          </div>
+        </div>
+
+        <div class="shop-row">
+          <div class="shop-info">
+            <div class="shop-name">Baterai 9V</div>
+            <div class="shop-desc">Dibeli langsung di toko lokal</div>
+          </div>
+          <div class="price-input-wrap">
+            <span class="price-label">Rp</span>
+            <input class="price-input" type="number" value="15000" oninput="calcTotal()" placeholder="0">
+          </div>
+        </div>
+
+        <div class="shop-row">
+          <div class="shop-info">
+            <div class="shop-name">Clip Baterai 9V</div>
+            <div class="shop-desc">Konektor untuk baterai 9V ke Arduino</div>
+            <a class="shop-btn" href="https://shopee.co.id/BATTERY-9V-CLIP-BATERAI-KLIP-ARDUINO-i.6555517.706444908" target="_blank" style="margin-top:6px; display:inline-block;">🛒 Beli</a>
+          </div>
+          <div class="price-input-wrap">
+            <span class="price-label">Rp</span>
+            <input class="price-input" type="number" value="5000" oninput="calcTotal()" placeholder="0">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Total -->
+      <div style="margin-top:16px; padding:16px; background:rgba(0,212,255,0.05); border:1px solid var(--accent); border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--dim); letter-spacing:2px;">ESTIMASI TOTAL BIAYA</div>
+          <div style="font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--dim); margin-top:4px;">*sesuaikan harga dengan toko yang kamu temukan</div>
+        </div>
+        <div style="font-family:'Orbitron',monospace; font-size:1.2rem; font-weight:700; color:var(--accent);" id="totalPrice">Rp 0</div>
+      </div>
+
+    </div>
+
+    <div class="card" style="animation-delay:0.2s;">
+      <div class="card-label">// TIM KELOMPOK PROJECT</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px;">
+
+        <div class="team-box">
+          <div class="team-title">🎨 Desain Presentasi & Media</div>
+          <div class="team-member">Andre Cadenza</div>
+          <div class="team-member">Marchello Evander</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">🔧 Hardware & Perakitan</div>
+          <div class="team-member">Hein Jeremi</div>
+          <div class="team-member">M. Askar Andika</div>
+          <div class="team-member">Ferdinan Tamaroba</div>
+          <div class="team-member">Dani Ahaddin</div>
+          <div class="team-member">Hanok Yan</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">💻 Programming Arduino & Web</div>
+          <div class="team-member">Alexander S. D. Andries</div>
+          <div class="team-member">Claude AI</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">📸 Dokumentasi Video & Foto</div>
+          <div class="team-member">Randy Daniel</div>
+          <div class="team-member">M. Farid Alfarizi</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">📝 Laporan Penulisan</div>
+          <div class="team-member">Rifaldo Yoga</div>
+          <div class="team-member">Mizle Jhordan</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">📖 Buku Panduan Proyek</div>
+          <div class="team-member">Milyardo Putra</div>
+          <div class="team-member">Marchello Evander</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">📄 Makalah & Pencetakan</div>
+          <div class="team-member">Andre Cadenza</div>
+          <div class="team-member">Milyardo Putra</div>
+        </div>
+
+        <div class="team-box">
+          <div class="team-title">🎬 Editor Video</div>
+          <div class="team-member">Riski Pamungkas</div>
+        </div>
+
+      </div>
+      <div style="margin-top:16px; font-family:'Share Tech Mono',monospace; font-size:0.72rem; color:var(--dim); border-top:1px solid var(--border); padding-top:12px;">
+        * Anggota yang tidak tercantum di atas turut berkontribusi dalam pekerjaan lainnya
+      </div>
+    </div>
+
     <footer>ASKARM v1.0 · POWERED BY CLAUDE AI &amp; GROQ API · ROBOTIC ARM &amp; INFORMATIKA<br style="margin-bottom:4px">Prompt by Zanxyy (Alexander Sebastian Deryl Andries)</footer>
   </div>
 
@@ -373,6 +651,26 @@
     //  GANTI URL INI dengan URL Cloudflare Worker kamu setelah deploy
     // ============================================================
     const WORKER_URL = "https://askarm-api.derylandries.workers.dev";
+
+    const SHOP_KEYWORDS = [
+      'bahan','komponen','beli','harga','shopee','arduino','servo','joystick',
+      'pca9685','mb102','breadboard','jumper','baterai','rangka','berapa','biaya',
+      'budget','murah','mahal','tokopedia','marketplace','material'
+    ];
+
+    function checkShowShop(question) {
+      const q = question.toLowerCase();
+      return SHOP_KEYWORDS.some(k => q.includes(k));
+    }
+
+    function calcTotal() {
+      const inputs = document.querySelectorAll('.price-input');
+      let total = 0;
+      inputs.forEach(i => total += parseInt(i.value) || 0);
+      document.getElementById('totalPrice').textContent =
+        'Rp ' + total.toLocaleString('id-ID');
+    }
+    window.onload = calcTotal;
 
     function fillExample(btn) {
       document.getElementById('question').value = btn.textContent;
@@ -391,6 +689,14 @@
       btn.disabled = true;
       loadingBar.classList.add('active');
       answerCard.classList.remove('visible');
+
+      // Cek keyword dulu sebelum kirim — tampilkan Shopee langsung
+      const shopCard = document.getElementById('shopCard');
+      if (checkShowShop(q)) {
+        shopCard.classList.add('visible');
+      } else {
+        shopCard.classList.remove('visible');
+      }
 
       try {
         const res = await fetch(WORKER_URL, {
