@@ -554,7 +554,8 @@
 
         <div class="team-box">
           <div class="team-title">💻 Programming Arduino & Web</div>
-          <div class="team-member">Alexander Sebastian Deryl Andries (With Claude Ai)</div>
+          <div class="team-member">Alexander Sebastian Deryl Andries</div>
+          <div class="team-member">Claude AI</div>
         </div>
 
         <div class="team-box">
@@ -610,6 +611,15 @@
     <div class="card">
       <div class="card-label">// INPUT QUERY</div>
       <textarea id="question" rows="4" placeholder="tanyakan sesuatu tentang robotic arm atau informatika..."></textarea>
+
+      <div class="examples">
+        <button class="ex-btn" onclick="fillExample(this)">Cara wiring PCA9685?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Kenapa servo bergetar?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Kode joystick ke servo</button>
+        <button class="ex-btn" onclick="fillExample(this)">Apa itu algoritma?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Siapa anggota kelompok?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Jelaskan struktur data array</button>
+      </div>
 
       <button class="btn" id="askBtn" onclick="askQuestion()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -787,6 +797,7 @@
     ];
 
     const history = [];
+    const chatMessages = []; // format {role, content} untuk dikirim ke AI
 
     function copyAnswer() {
       const text = document.getElementById('answerText').innerText;
@@ -821,6 +832,7 @@
 
     function clearHistory() {
       history.length = 0;
+      chatMessages.length = 0;
       document.getElementById('historyCard').style.display = 'none';
       document.getElementById('historyList').innerHTML = '';
     }
@@ -869,11 +881,15 @@
         const res = await fetch(WORKER_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: q }),
+          body: JSON.stringify({ question: q, messages: chatMessages }),
         });
 
         const data = await res.json();
         const raw = data.answer || data.error || "Tidak ada respons.";
+
+        // Simpan ke riwayat chat AI
+        chatMessages.push({ role: "user", content: q });
+        chatMessages.push({ role: "assistant", content: raw });
         // Render **bold** dan URL jadi clickable
         const formatted = raw
           .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
