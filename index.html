@@ -40,11 +40,46 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 40px 20px 80px;
       position: relative;
       z-index: 1;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        order: 2;
+      }
+      .main-content {
+        order: 1;
+      }
     }
 
     header {
@@ -421,19 +456,104 @@
     <header>
       <div class="logo">ASK<span>ARM</span></div>
       <div class="tagline">Robotic Arm &amp; Informatika</div>
-
-      <div style="margin-top:10px; font-family:'Share Tech Mono',monospace; font-size:0.8rem; color:var(--accent); letter-spacing:3px;">
-        XII B1 SMANSA
-      </div>
-
+      <div style="margin-top:10px; font-family:'Share Tech Mono',monospace; font-size:0.8rem; color:var(--accent); letter-spacing:3px;">XII B1 SMANSA</div>
       <div style="margin-top:12px;">
         <span class="status"><span class="status-dot"></span> AI ONLINE</span>
       </div>
     </header>
 
+    <div class="layout">
+
+      <!-- SIDEBAR KIRI -->
+      <div class="sidebar">
+
+        <!-- Riwayat -->
+        <div class="card" id="historyCard" style="display:none;">
+          <div class="card-label">// RIWAYAT</div>
+          <div id="historyList" style="display:flex; flex-direction:column; gap:8px;"></div>
+          <button onclick="clearHistory()" style="margin-top:12px; font-family:'Share Tech Mono',monospace; font-size:0.65rem; padding:6px 14px; background:transparent; border:1px solid #ff6b35; border-radius:3px; color:#ff6b35; cursor:pointer;">🗑 HAPUS</button>
+        </div>
+
+        <!-- Tim Kelompok -->
+        <div class="card">
+          <div class="card-label">// TIM KELOMPOK</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+
+            <div class="team-box">
+              <div class="team-title">🎨 Desain & Media</div>
+              <div class="team-member">Andre Cadenza Putra Pathoni</div>
+              <div class="team-member">Marchello Evander Violian</div>
+            </div>
+
+            <div class="team-box">
+              <div class="team-title">🔧 Hardware & Perakitan</div>
+              <div class="team-member">Hein Jeremi Kaiway</div>
+              <div class="team-member">Muhammad Askar Andika Trijaya Rais</div>
+              <div class="team-member">Ferdinan Tamaroba</div>
+              <div class="team-member">Dani Ahaddin Firmansyah</div>
+              <div class="team-member">Hanok Yan Aritahanu</div>
+            </div>
+
+            <div class="team-box">
+              <div class="team-title">💻 Programming Arduino & Web</div>
+              <div class="team-member">Alexander Sebastian Deryl Andries</div>
+              <div class="team-member">Claude AI</div>
+            </div>
+
+            <div class="team-box">
+              <div class="team-title">📸 Dokumentasi Video & Foto</div>
+              <div class="team-member">Randy Daniel Tomasouw Wanggai</div>
+              <div class="team-member">Muhammad Farid Alfarizi</div>
+            </div>
+
+            <div class="team-box">
+              <div class="team-title">📝 Laporan Penulisan</div>
+              <div class="team-member">Rifaldo Yoga Maripi</div>
+              <div class="team-member">Mizle Jhordan Pappang Allo</div>
+            </div>
+
+            <div class="team-box">
+              <div class="team-title">📖 Buku Panduan Proyek</div>
+              <div class="team-member">Milyardo Paschalis Permata Puthera</div>
+              <div class="team-member">Marchello Evander Violian</div>
+            </div>
+
+            <div class="team-box">
+              <div class="team-title">📄 Makalah & Pencetakan</div>
+              <div class="team-member">Andre Cadenza Putra Pathoni</div>
+              <div class="team-member">Milyardo Paschalis Permata Puthera</div>
+            </div>
+
+            <div class="team-box">
+              <div class="team-title">🎬 Editor Video</div>
+              <div class="team-member">Riski Pamungkas</div>
+            </div>
+
+          </div>
+          <div style="margin-top:12px; font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--dim); border-top:1px solid var(--border); padding-top:10px;">
+            * Anggota lain turut membantu pekerjaan lainnya
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MAIN CONTENT KANAN -->
+
+      <!-- MAIN CONTENT KANAN -->
+      <div class="main-content">
+
     <div class="card">
       <div class="card-label">// INPUT QUERY</div>
       <textarea id="question" rows="4" placeholder="tanyakan sesuatu tentang robotic arm atau informatika..."></textarea>
+
+      <div class="examples">
+        <button class="ex-btn" onclick="fillExample(this)">Cara wiring PCA9685?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Kenapa servo bergetar?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Kode joystick ke servo</button>
+        <button class="ex-btn" onclick="fillExample(this)">Apa itu algoritma?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Siapa anggota kelompok?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Jelaskan struktur data array</button>
+      </div>
 
       <button class="btn" id="askBtn" onclick="askQuestion()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -450,13 +570,6 @@
         <button id="copyBtn" onclick="copyAnswer()" style="margin-left:auto; font-family:'Share Tech Mono',monospace; font-size:0.65rem; padding:4px 10px; background:transparent; border:1px solid var(--dim); border-radius:3px; color:var(--dim); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--dim)';this.style.color='var(--dim)'">📋 COPY</button>
       </div>
       <div class="answer-text" id="answerText"></div>
-    </div>
-
-    <!-- History -->
-    <div class="card" id="historyCard" style="display:none;">
-      <div class="card-label">// RIWAYAT PERTANYAAN</div>
-      <div id="historyList" style="display:flex; flex-direction:column; gap:8px;"></div>
-      <button onclick="clearHistory()" style="margin-top:12px; font-family:'Share Tech Mono',monospace; font-size:0.65rem; padding:6px 14px; background:transparent; border:1px solid #ff6b35; border-radius:3px; color:#ff6b35; cursor:pointer;">🗑 HAPUS RIWAYAT</button>
     </div>
 
     <div class="card answer-card" id="shopCard">
@@ -590,64 +703,8 @@
 
     </div>
 
-    <div class="card" style="animation-delay:0.2s;">
-      <div class="card-label">// TIM KELOMPOK PROJECT</div>
-      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px;">
-
-        <div class="team-box">
-          <div class="team-title">🎨 Desain Presentasi & Media</div>
-          <div class="team-member">Andre Cadenza Putra Pathoni</div>
-          <div class="team-member">Marchello Evander Violian</div>
-        </div>
-
-        <div class="team-box">
-          <div class="team-title">🔧 Hardware & Perakitan</div>
-          <div class="team-member">Hein Jeremi Kaiway</div>
-          <div class="team-member">Muhammad Askar Andika Trijaya Rais</div>
-          <div class="team-member">Ferdinan Tamaroba</div>
-          <div class="team-member">Dani Ahaddin Firmansyah</div>
-          <div class="team-member">Hanok Yan Aritahanu</div>
-        </div>
-
-        <div class="team-box">
-          <div class="team-title">💻 Programming Arduino & Web</div>
-          <div class="team-member">Alexander Sebastian Deryl Andries (with Claude Ai)</div>
-        </div>
-
-        <div class="team-box">
-          <div class="team-title">📸 Dokumentasi Video & Foto</div>
-          <div class="team-member">Randy Daniel Tomasouw Wanggai</div>
-          <div class="team-member">Muhammad Farid Alfarizi</div>
-        </div>
-
-        <div class="team-box">
-          <div class="team-title">📝 Laporan Penulisan</div>
-          <div class="team-member">Rifaldo Yoga Maripi</div>
-          <div class="team-member">Mizle Jhordan Pappang Allo</div>
-        </div>
-
-        <div class="team-box">
-          <div class="team-title">📖 Buku Panduan Proyek</div>
-          <div class="team-member">Milyardo Paschalis Permata Puthera</div>
-          <div class="team-member">Marchello Evander Violian</div>
-        </div>
-
-        <div class="team-box">
-          <div class="team-title">📄 Makalah & Pencetakan</div>
-          <div class="team-member">Andre Cadenza Putra Pathoni</div>
-          <div class="team-member">Milyardo Paschalis Permata Puthera</div>
-        </div>
-
-        <div class="team-box">
-          <div class="team-title">🎬 Editor Video</div>
-          <div class="team-member">Riski Pamungkas</div>
-        </div>
-
-      </div>
-      <div style="margin-top:16px; font-family:'Share Tech Mono',monospace; font-size:0.72rem; color:var(--dim); border-top:1px solid var(--border); padding-top:12px;">
-        * Anggota yang tidak tercantum di atas turut berkontribusi dalam pekerjaan lainnya
-      </div>
-    </div>
+      </div><!-- end main-content -->
+    </div><!-- end layout -->
 
     <footer>ASKARM v1.0 · POWERED BY CLAUDE AI &amp; GROQ API · ROBOTIC ARM &amp; INFORMATIKA<br style="margin-bottom:4px">Prompt by Zanxyy (Alexander Sebastian Deryl Andries)</footer>
   </div>
