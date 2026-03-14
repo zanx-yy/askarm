@@ -532,6 +532,24 @@
       <button onclick="clearHistory()" style="margin-top:12px; font-family:'Share Tech Mono',monospace; font-size:0.65rem; padding:6px 14px; background:transparent; border:1px solid #ff6b35; border-radius:3px; color:#ff6b35; cursor:pointer;">🗑 HAPUS</button>
     </div>
 
+    <!-- Ketua & Wakil -->
+    <div class="card">
+      <div class="card-label">// STRUKTUR KELOMPOK</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+
+        <div style="padding:10px 14px; background:rgba(0,212,255,0.07); border:1px solid var(--accent); border-radius:6px;">
+          <div style="font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--accent); letter-spacing:2px; margin-bottom:4px;">👑 KETUA</div>
+          <div style="font-size:0.95rem; color:var(--text); font-weight:600;">Milyardo Paschalis Permata Puthera</div>
+        </div>
+
+        <div style="padding:10px 14px; background:rgba(255,107,53,0.07); border:1px solid var(--accent2); border-radius:6px;">
+          <div style="font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--accent2); letter-spacing:2px; margin-bottom:4px;">⚡ WAKIL & KOORDINATOR</div>
+          <div style="font-size:0.95rem; color:var(--text); font-weight:600;">Alexander Sebastian Deryl Andries</div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- Tim Kelompok -->
     <div class="card">
       <div class="card-label">// TIM KELOMPOK</div>
@@ -554,7 +572,8 @@
 
         <div class="team-box">
           <div class="team-title">💻 Programming Arduino & Web</div>
-          <div class="team-member">Alexander Sebastian Deryl Andries (with Claude Ai)</div>
+          <div class="team-member">Alexander Sebastian Deryl Andries</div>
+          <div class="team-member">Claude AI</div>
         </div>
 
         <div class="team-box">
@@ -610,6 +629,15 @@
     <div class="card">
       <div class="card-label">// INPUT QUERY</div>
       <textarea id="question" rows="4" placeholder="tanyakan sesuatu tentang robotic arm atau informatika..."></textarea>
+
+      <div class="examples">
+        <button class="ex-btn" onclick="fillExample(this)">Cara wiring PCA9685?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Kenapa servo bergetar?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Kode joystick ke servo</button>
+        <button class="ex-btn" onclick="fillExample(this)">Apa itu algoritma?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Siapa anggota kelompok?</button>
+        <button class="ex-btn" onclick="fillExample(this)">Jelaskan struktur data array</button>
+      </div>
 
       <button class="btn" id="askBtn" onclick="askQuestion()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
